@@ -22,10 +22,10 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
 
     scan_bridge = Node(
-        package='ros_ign_bridge',
+        package='ros_gz_bridge',
         executable='parameter_bridge',
         arguments=[
-          '/scan@sensor_msgs/msg/LaserScan@ignition.msgs.LaserScan',
+            '/scan@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan',
         ],
         parameters=[{'use_sim_time': use_sim_time}],
         output='screen'
@@ -33,24 +33,24 @@ def generate_launch_description():
 
     # cmd_vel bridge
     imu_bridge = Node(
-        package='ros_ign_bridge',
+        package='ros_gz_bridge',
         executable='parameter_bridge',
         arguments=[
-          '/imu@sensor_msgs/Imu@ignition.msgs.IMU'
+            '/imu@sensor_msgs/Imu@gz.msgs.IMU'
         ],
         parameters=[{'use_sim_time': use_sim_time}],
         output='screen'
     )
 
     # cmd_vel bridge
-    cmd_vel_bridge = Node(package='ros_ign_bridge', executable='parameter_bridge',
+    cmd_vel_bridge = Node(package='ros_gz_bridge', executable='parameter_bridge',
                           name='cmd_vel_bridge',
                           output='screen',
                           parameters=[{
                               'use_sim_time': use_sim_time
                           }],
                           arguments=[
-                              '/cmd_vel' + '@geometry_msgs/msg/Twist' + '[ignition.msgs.Twist',
+                              '/cmd_vel' + '@geometry_msgs/msg/Twist' + '[gz.msgs.Twist',
                           ],
                           remappings=[
                               ('/cmd_vel',

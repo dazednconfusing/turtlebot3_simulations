@@ -30,7 +30,7 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
     world_name = LaunchConfiguration('world_name', default='turtlebot3_world')
 
-    launch_file_dir = os.path.join(get_package_share_directory('turtlebot3_ignition'), 'launch')
+    launch_file_dir = os.path.join(get_package_share_directory('turtlebot3_gz'), 'launch')
 
     static_tf = Node(package='tf2_ros',
                      executable='static_transform_publisher',
@@ -39,19 +39,19 @@ def generate_launch_description():
                      arguments=['0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'base_scan', [TURTLEBOT3_MODEL, '/base_footprint/hls_lfcd_lds']],
                      parameters=[{'use_sim_time': use_sim_time}])
 
-    # Set ignition resource path
-    ign_resource_path = SetEnvironmentVariable(
-        name='IGN_GAZEBO_RESOURCE_PATH',value=[
+    # Set gz-sim resource path
+    gz_resource_path = SetEnvironmentVariable(
+        name='GZ_SIM_RESOURCE_PATH', value=[
         os.path.join(get_package_prefix('turtlebot3_description'), "share"),
         ":" +
         os.path.join(get_package_share_directory('turtlebot3_gazebo'), "models")])
 
     republish_cmd = Node(
-        package='turtlebot3_ignition',
+        package='turtlebot3_gz',
         executable='cmd_republisher')
 
-    ignition_spawn_entity = Node(
-        package='ros_ign_gazebo',
+    gazebo_spawn_entity = Node(
+        package='ros_gz_sim',
         executable='create',
         output='screen',
         arguments=['-topic', 'robot_description',
@@ -62,8 +62,8 @@ def generate_launch_description():
                    '-z', '0.01'],
         )
 
-    ignition_spawn_world = Node(
-        package='ros_ign_gazebo',
+    gazebo_spawn_world = Node(
+        package='ros_gz_sim',
         executable='create',
         output='screen',
         arguments=['-file', PathJoinSubstitution([
@@ -74,23 +74,23 @@ def generate_launch_description():
                    '-allow_renaming', 'false'],
         )
 
-    basic_world = os.path.join(get_package_share_directory('turtlebot3_ignition'), "worlds", "empty.sdf")
+    basic_world = os.path.join(get_package_share_directory('turtlebot3_gz'), "worlds", "empty.sdf")
 
     return LaunchDescription([
         republish_cmd,
         static_tf,
-        ign_resource_path,
-        ignition_spawn_world,
-        ignition_spawn_entity,
+        gz_resource_path,
+        gazebo_spawn_world,
+        gazebo_spawn_entity,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
-                [os.path.join(get_package_share_directory('ros_ign_gazebo'),
-                              'launch', 'ign_gazebo.launch.py')]),
-            launch_arguments=[('ign_args', [' -r -v 3 ' +
+                [os.path.join(get_package_share_directory('ros_gz_sim'),
+                              'launch', 'gz_sim.launch.py')]),
+            launch_arguments=[('gz_args', [' -r -v 3 ' +
                               basic_world
                               + ' ' + ' --gui-config ' +
                               os.path.join(
-                                get_package_share_directory('turtlebot3_ignition'),
+                                get_package_share_directory('turtlebot3_gz'),
                                 "gui", "gui.config"
                               )
                              ])]),
@@ -103,7 +103,7 @@ def generate_launch_description():
             default_value=world_name,
             description='World name'),
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([launch_file_dir, '/ros_ign_bridge.launch.py']),
+            PythonLaunchDescriptionSource([launch_file_dir, '/ros_gz_bridge.launch.py']),
             launch_arguments={'use_sim_time': use_sim_time}.items(),
         ),
         IncludeLaunchDescription(

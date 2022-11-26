@@ -14,9 +14,10 @@
 //
 // Author: Ryan Shim
 
-#include <ignition/math.hh>
+#include <gz/math.hh>
 #include <stdio.h>
 
+// TODO: use gz instead of gazebo
 #include <gazebo/common/common.hh>
 #include <gazebo/gazebo.hh>
 #include <gazebo/physics/physics.hh>
@@ -45,16 +46,16 @@ public:
 
     // set starting location of the box
     key = anim->CreateKeyFrame(0);
-    key->Translation(ignition::math::Vector3d(0.0, 0.0, 0.0));
-    key->Rotation(ignition::math::Quaterniond(0, 0, 0));
+    key->Translation(gz::math::Vector3d(0.0, 0.0, 0.0));
+    key->Rotation(gz::math::Quaterniond(0, 0, 0));
 
     key = anim->CreateKeyFrame(20);
-    key->Translation(ignition::math::Vector3d(0.0, 0.0, 0.0));
-    key->Rotation(ignition::math::Quaterniond(0, 0, PI));
+    key->Translation(gz::math::Vector3d(0.0, 0.0, 0.0));
+    key->Rotation(gz::math::Quaterniond(0, 0, PI));
 
     key = anim->CreateKeyFrame(40);
-    key->Translation(ignition::math::Vector3d(0.0, 0.0, 0.0));
-    key->Rotation(ignition::math::Quaterniond(0, 0, 2 * PI));
+    key->Translation(gz::math::Vector3d(0.0, 0.0, 0.0));
+    key->Rotation(gz::math::Quaterniond(0, 0, 2 * PI));
 
     // set the animation
     _parent->SetAnimation(anim);

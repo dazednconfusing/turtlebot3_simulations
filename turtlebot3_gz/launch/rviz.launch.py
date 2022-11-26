@@ -24,8 +24,8 @@ from launch_ros.actions import Node
 def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
 
-    rviz_config_dir = os.path.join(get_package_share_directory('turtlebot3_ignition'),
-                                   'rviz', 'tb3_ignition.rviz')
+    rviz_config_dir = os.path.join(get_package_share_directory('turtlebot3_gz'),
+                                   'rviz', 'tb3_gz.rviz')
 
     return LaunchDescription([
         DeclareLaunchArgument(

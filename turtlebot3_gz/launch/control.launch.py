@@ -24,11 +24,11 @@ from launch_ros.actions import Node
 TURTLEBOT3_MODEL = os.environ['TURTLEBOT3_MODEL']
 
 def generate_launch_description():
-    turtlebot3_ignition_path = get_package_share_directory('turtlebot3_ignition')
+    turtlebot3_gz_path = get_package_share_directory('turtlebot3_gz')
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
 
     control_params_file = PathJoinSubstitution(
-        [turtlebot3_ignition_path,
+        [turtlebot3_gz_path,
          'config', 'turtlebot3_' + TURTLEBOT3_MODEL + '.yaml'])
 
     load_joint_state_controller = Node(

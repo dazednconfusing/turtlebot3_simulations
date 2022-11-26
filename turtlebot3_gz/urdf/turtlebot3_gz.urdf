@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="turtlebot_ignition" params="">
+  <xacro:macro name="turtlebot_gz" params="">
     <gazebo reference="wheel_left_link">
       <visual>
         <material>
@@ -84,7 +84,7 @@
     <gazebo>
       <!-- Joint state publisher -->
       <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
-        <parameters>$(find turtlebot3_ignition)/config/turtlebot3_burger.yaml</parameters>
+        <parameters>$(find turtlebot3_gz)/config/turtlebot3_burger.yaml</parameters>
       </plugin>
     </gazebo>
 

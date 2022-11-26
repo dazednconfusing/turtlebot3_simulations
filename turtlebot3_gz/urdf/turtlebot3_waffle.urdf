@@ -1,16 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda">
 
-  <xacro:include filename="$(find turtlebot3_description)/urdf/turtlebot3_waffle_pi.urdf"/>
+  <xacro:include filename="$(find turtlebot3_description)/urdf/turtlebot3_waffle.urdf"/>
 
-  <xacro:include filename="$(find turtlebot3_ignition)/urdf/turtlebot3_ignition.urdf"/>
+  <xacro:include filename="$(find turtlebot3_gz)/urdf/turtlebot3_gz.urdf"/>
 
   <xacro:turtlebot_ignition/>
 
   <gazebo reference="camera_rgb_frame">
     <sensor name="camera" type="camera">
       <always_on>true</always_on>
-      <ignition_frame_id>base_camera</ignition_frame_id>
       <visualize>true</visualize>
       <update_rate>30</update_rate>
       <camera name="intel_realsense_r200">
@@ -35,4 +34,5 @@
       </camera>
     </sensor>
   </gazebo>
+
 </robot>

@@ -3,7 +3,7 @@
 
   <xacro:include filename="$(find turtlebot3_description)/urdf/turtlebot3_burger.urdf"/>
 
-  <xacro:include filename="$(find turtlebot3_ignition)/urdf/turtlebot3_ignition.urdf"/>
+  <xacro:include filename="$(find turtlebot3_gz)/urdf/turtlebot3_gz.urdf"/>
 
-  <xacro:turtlebot_ignition/>
+  <xacro:turtlebot_gz/>
 </robot>
