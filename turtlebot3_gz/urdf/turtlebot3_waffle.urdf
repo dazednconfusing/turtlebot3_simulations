@@ -5,7 +5,7 @@
 
   <xacro:include filename="$(find turtlebot3_gz)/urdf/turtlebot3_gz.urdf"/>
 
-  <xacro:turtlebot_ignition/>
+  <xacro:turtlebot_gz/>
 
   <gazebo reference="camera_rgb_frame">
     <sensor name="camera" type="camera">

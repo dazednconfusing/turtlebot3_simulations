@@ -83,14 +83,14 @@
 
     <gazebo>
       <!-- Joint state publisher -->
-      <plugin filename="ign_ros2_control-system" name="ign_ros2_control::IgnitionROS2ControlPlugin">
+      <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
         <parameters>$(find turtlebot3_gz)/config/turtlebot3_burger.yaml</parameters>
       </plugin>
     </gazebo>
 
-    <ros2_control name="IgnitionSystem" type="system">
+    <ros2_control name="GazeboSimSystem" type="system">
       <hardware>
-          <plugin>ign_ros2_control/IgnitionSystem</plugin>
+        <plugin>gz_ros2_control/GazeboSimSystem</plugin>
       </hardware>
 
       <xacro:macro name="configure_joint" params="joint_name">
