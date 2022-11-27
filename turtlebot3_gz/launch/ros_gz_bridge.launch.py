@@ -43,19 +43,21 @@ def generate_launch_description():
     )
 
     # cmd_vel bridge
-    cmd_vel_bridge = Node(package='ros_gz_bridge', executable='parameter_bridge',
-                          name='cmd_vel_bridge',
-                          output='screen',
-                          parameters=[{
-                              'use_sim_time': use_sim_time
-                          }],
-                          arguments=[
-                              '/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
-                          ],
-                          remappings=[
-                              ('/cmd_vel',
-                               'diff_drive_base_controller/cmd_vel_unstamped')
-                          ])
+    cmd_vel_bridge = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        name='cmd_vel_bridge',
+        output='screen',
+        parameters=[{
+            'use_sim_time': use_sim_time
+        }],
+        arguments=[
+            '/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
+        ],
+        remappings=[
+            ('/cmd_vel',
+            'diff_drive_base_controller/cmd_vel_unstamped')
+        ])
 
     return LaunchDescription([
         imu_bridge,
