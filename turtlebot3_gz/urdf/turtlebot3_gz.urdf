@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="turtlebot3_gz_sim">
 
   <xacro:macro name="turtlebot_gz" params="">
     <gazebo reference="wheel_left_link">
@@ -42,12 +42,11 @@
       </visual>
     </gazebo>
     <gazebo reference="base_scan">
+      <!-- see https://gazebosim.org/docs/garden/sensors#lidar-sensor -->
       <sensor name='hls_lfcd_lds' type='gpu_lidar'>
         <topic>scan</topic>
-        <ignition_frame_id>base_scan</ignition_frame_id>
-        <always_on>true</always_on>
-        <visualize>true</visualize>
-        <pose>-0.032 0 0.171 0 0 0</pose>
+        <!-- pose>-0.032 0 0.171 0 0 0</pose -->
+        <pose>0 0 0 0 0 0</pose>
         <update_rate>5</update_rate>
         <ray>
           <scan>
@@ -69,10 +68,13 @@
             <stddev>0.01</stddev>
           </noise>
         </ray>
+        <always_on>1</always_on>
+        <visualize>true</visualize>
       </sensor>
     </gazebo>
 
     <gazebo reference="imu_link">
+      <!-- see https://gazebosim.org/docs/garden/sensors#imu-sensor -->
       <sensor name="imu_sensor" type="imu">
         <always_on>1</always_on>
         <update_rate>10.0</update_rate>
