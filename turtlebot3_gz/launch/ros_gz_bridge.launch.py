@@ -25,7 +25,7 @@ def generate_launch_description():
         package='ros_gz_bridge',
         executable='parameter_bridge',
         arguments=[
-            '/scan@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan',
+            '/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan',
         ],
         parameters=[{'use_sim_time': use_sim_time}],
         output='screen'
@@ -36,7 +36,7 @@ def generate_launch_description():
         package='ros_gz_bridge',
         executable='parameter_bridge',
         arguments=[
-            '/imu@sensor_msgs/Imu@gz.msgs.IMU'
+            '/imu@sensor_msgs/msg/Imu[gz.msgs.IMU'
         ],
         parameters=[{'use_sim_time': use_sim_time}],
         output='screen'
@@ -50,7 +50,7 @@ def generate_launch_description():
                               'use_sim_time': use_sim_time
                           }],
                           arguments=[
-                              '/cmd_vel' + '@geometry_msgs/msg/Twist' + '[gz.msgs.Twist',
+                              '/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
                           ],
                           remappings=[
                               ('/cmd_vel',
