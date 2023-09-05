@@ -23,6 +23,7 @@ def generate_launch_description():
 
     scan_bridge = Node(
         package='ros_gz_bridge',
+        name="scan_bridge",
         executable='parameter_bridge',
         arguments=[
             '/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan',
@@ -35,6 +36,7 @@ def generate_launch_description():
     imu_bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
+        name="imu_bridge",
         arguments=[
             '/imu@sensor_msgs/msg/Imu[gz.msgs.IMU'
         ],
@@ -62,8 +64,9 @@ def generate_launch_description():
     spawn_bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
+        name="spawn_bridge",
         arguments=[
-            '/spawn_entity@ros_gz_interfaces/srv/SpawnEntity@gz.srv.SpawnEntity',
+            '/spawn_entity@ros_gz_interfaces/srv/SpawnEntity',
         ],
     )
 
