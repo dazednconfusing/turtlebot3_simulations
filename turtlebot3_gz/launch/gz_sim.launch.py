@@ -80,7 +80,6 @@ def generate_launch_description():
         republish_cmd,
         static_tf,
         gz_resource_path,
-        gazebo_spawn_world,
         gazebo_spawn_entity,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
