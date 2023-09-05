@@ -62,17 +62,21 @@ def generate_launch_description():
                     ],
         )
 
+    basic_world = os.path.join(get_package_share_directory('turtlebot3_gz'), "worlds", "empty.sdf")
+
     return LaunchDescription([
         republish_cmd,
         static_tf,
         gz_resource_path,
+
         gazebo_spawn_entity,
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 [os.path.join(get_package_share_directory('ros_gz_sim'),
                               'launch', 'gz_sim.launch.py')]),
             launch_arguments=[('gz_args', [' -r -v 3 ' +
-                               ' --gui-config ' +
+                              basic_world
+                              + ' ' + ' --gui-config ' +
                               os.path.join(
                                 get_package_share_directory('turtlebot3_gz'),
                                 "gui", "gui.config"
