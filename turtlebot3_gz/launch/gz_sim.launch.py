@@ -41,7 +41,7 @@ def generate_launch_description():
 
     # Set gz-sim resource path
     gz_resource_path = SetEnvironmentVariable(
-        name='GZ_SIM_RESOURCE_PATH', value=[
+        name='IGN_GAZEBO_RESOURCE_PATH', value=[
         os.path.join(get_package_prefix('turtlebot3_description'), "share"),
         ":" +
         os.path.join(get_package_share_directory('turtlebot3_gazebo'), "models")])
@@ -62,20 +62,6 @@ def generate_launch_description():
                     ],
         )
 
-    # gazebo_spawn_world = Node(
-    #     package='ros_gz_sim',
-    #     executable='create',
-    #     output='screen',
-    #     arguments=['-file', PathJoinSubstitution([
-    #                     get_package_share_directory('turtlebot3_gazebo'),
-    #                     "models",
-    #                     world_name,
-    #                     "model.sdf"]),
-    #                '-allow_renaming', 'false'],
-    #     )
-
-    basic_world = os.path.join(get_package_share_directory('turtlebot3_gz'), "worlds", "empty.sdf")
-
     return LaunchDescription([
         republish_cmd,
         static_tf,
@@ -86,8 +72,7 @@ def generate_launch_description():
                 [os.path.join(get_package_share_directory('ros_gz_sim'),
                               'launch', 'gz_sim.launch.py')]),
             launch_arguments=[('gz_args', [' -r -v 3 ' +
-                              basic_world
-                              + ' ' + ' --gui-config ' +
+                               ' --gui-config ' +
                               os.path.join(
                                 get_package_share_directory('turtlebot3_gz'),
                                 "gui", "gui.config"
