@@ -27,7 +27,8 @@ from launch.substitutions import LaunchConfiguration
 
 def generate_launch_description():
     launch_file_dir = os.path.join(get_package_share_directory('turtlebot3_gazebo'), 'launch')
-    pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
+    gz_launch_file_dir = os.path.join(get_package_share_directory('turtlebot3_gz'), 'launch')
+    pkg_gazebo_ros = get_package_share_directory('ros_gz')
 
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
     x_pose = LaunchConfiguration('x_pose', default='0.0')
@@ -41,7 +42,7 @@ def generate_launch_description():
 
     gzserver_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(pkg_gazebo_ros, 'launch', 'gzserver.launch.py')
+            os.path.join(pkg_gazebo_ros, 'launch', 'gz_sim.launch.py')
         ),
         launch_arguments={'world': world}.items()
     )
@@ -54,7 +55,7 @@ def generate_launch_description():
 
     robot_state_publisher_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(launch_file_dir, 'robot_state_publisher.launch.py')
+            os.path.join(gz_launch_file_dir, 'robot_state_publisher.launch.py')
         ),
         launch_arguments={'use_sim_time': use_sim_time}.items()
     )

@@ -57,22 +57,22 @@ def generate_launch_description():
         arguments=['-topic', 'robot_description',
                    '-name', TURTLEBOT3_MODEL,
                    '-allow_renaming', 'true',
-                   '-x', '-2.0',
-                   '-y', '-0.5',
-                   '-z', '0.01'],
+                   '-x', '0',
+                   '-y', '0',
+                    ],
         )
 
-    gazebo_spawn_world = Node(
-        package='ros_gz_sim',
-        executable='create',
-        output='screen',
-        arguments=['-file', PathJoinSubstitution([
-                        get_package_share_directory('turtlebot3_gazebo'),
-                        "models",
-                        world_name,
-                        "model.sdf"]),
-                   '-allow_renaming', 'false'],
-        )
+    # gazebo_spawn_world = Node(
+    #     package='ros_gz_sim',
+    #     executable='create',
+    #     output='screen',
+    #     arguments=['-file', PathJoinSubstitution([
+    #                     get_package_share_directory('turtlebot3_gazebo'),
+    #                     "models",
+    #                     world_name,
+    #                     "model.sdf"]),
+    #                '-allow_renaming', 'false'],
+    #     )
 
     basic_world = os.path.join(get_package_share_directory('turtlebot3_gz'), "worlds", "empty.sdf")
 
