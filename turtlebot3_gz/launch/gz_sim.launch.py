@@ -42,7 +42,7 @@ def generate_launch_description():
                      executable='static_transform_publisher',
                      name='stf2',
                      output='log',
-                     arguments=['0.0', '0.0', '0.0', '0.0', '0.0', '0.0', '/map', '/base_footprint'],
+                     arguments=['0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'map', 'base_footprint'],
                      parameters=[{'use_sim_time': use_sim_time}])
 
 
