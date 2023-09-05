@@ -62,7 +62,7 @@ def generate_launch_description():
                     ],
         )
 
-    basic_world = os.path.join(get_package_share_directory('turtlebot3_gz'), "worlds", "empty.sdf")
+    # basic_world = os.path.join(get_package_share_directory('turtlebot3_gz'), "worlds", "empty.sdf")
 
     return LaunchDescription([
         republish_cmd,
@@ -70,26 +70,26 @@ def generate_launch_description():
         gz_resource_path,
 
         gazebo_spawn_entity,
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(
-                [os.path.join(get_package_share_directory('ros_gz_sim'),
-                              'launch', 'gz_sim.launch.py')]),
-            launch_arguments=[('gz_args', [' -r -v 3 ' +
-                              basic_world
-                              + ' ' + ' --gui-config ' +
-                              os.path.join(
-                                get_package_share_directory('turtlebot3_gz'),
-                                "gui", "gui.config"
-                              )
-                             ])]),
+        # IncludeLaunchDescription(
+        #     PythonLaunchDescriptionSource(
+        #         [os.path.join(get_package_share_directory('ros_gz_sim'),
+        #                       'launch', 'gz_sim.launch.py')]),
+        #     launch_arguments=[('gz_args', [' -r -v 3 ' +
+        #                       basic_world
+        #                       + ' ' + ' --gui-config ' +
+        #                       os.path.join(
+        #                         get_package_share_directory('turtlebot3_gz'),
+        #                         "gui", "gui.config"
+        #                       )
+        #                      ])]),
         DeclareLaunchArgument(
             'use_sim_time',
             default_value=use_sim_time,
             description='If true, use simulated clock'),
-        DeclareLaunchArgument(
-            'world_name',
-            default_value=world_name,
-            description='World name'),
+        # DeclareLaunchArgument(
+        #     'world_name',
+        #     default_value=world_name,
+        #     description='World name'),
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([launch_file_dir, '/ros_gz_bridge.launch.py']),
             launch_arguments={'use_sim_time': use_sim_time}.items(),
