@@ -58,11 +58,20 @@ def generate_launch_description():
             ('/cmd_vel',
             'diff_drive_base_controller/cmd_vel_unstamped')
         ])
+    
+    spawn_bridge = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        arguments=[
+            '/spawn_entity@ros_gz_interfaces/srv/SpawnEntity@gz.srv.SpawnEntity',
+        ],
+    )
 
     return LaunchDescription([
         imu_bridge,
         scan_bridge,
         cmd_vel_bridge,
+        spawn_bridge,
         DeclareLaunchArgument(
             'use_sim_time',
             default_value='true',
