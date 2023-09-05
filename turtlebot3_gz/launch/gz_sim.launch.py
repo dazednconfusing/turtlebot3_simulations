@@ -38,6 +38,13 @@ def generate_launch_description():
                      output='log',
                      arguments=['0.0', '0.0', '0.0', '0.0', '0.0', '0.0', 'base_scan', [TURTLEBOT3_MODEL, '/base_footprint/hls_lfcd_lds']],
                      parameters=[{'use_sim_time': use_sim_time}])
+    static_tf2 = Node(package='tf2_ros',
+                     executable='static_transform_publisher',
+                     name='static_transform_publisher',
+                     output='log',
+                     arguments=['0.0', '0.0', '0.0', '0.0', '0.0', '0.0', '/map', '/base_footprint'],
+                     parameters=[{'use_sim_time': use_sim_time}])
+
 
     # Set gz-sim resource path
     gz_resource_path = SetEnvironmentVariable(
@@ -67,6 +74,7 @@ def generate_launch_description():
     return LaunchDescription([
         republish_cmd,
         static_tf,
+        static_tf2,
         gz_resource_path,
 
         gazebo_spawn_entity,
