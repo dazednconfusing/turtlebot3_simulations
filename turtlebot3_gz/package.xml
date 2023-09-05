@@ -21,7 +21,6 @@
 
   <exec_depend>ament_index_python</exec_depend>
   <exec_depend>diff_drive_controller</exec_depend>
-  <exec_depend>gz_ros2_control</exec_depend>
   <exec_depend>imu_sensor_broadcaster</exec_depend>
   <exec_depend>joint_state_broadcaster</exec_depend>
   <exec_depend>launch</exec_depend>
